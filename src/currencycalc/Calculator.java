@@ -5,12 +5,18 @@
  */
 package currencycalc;
 
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
+
 /**
  *
  * @author ross
  */
 public class Calculator extends javax.swing.JPanel {
-
+    char modifierChar;
+    double previousValue;
+    
     /**
      * Creates new form Calculator
      */
@@ -27,9 +33,265 @@ public class Calculator extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
         backButton = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        results = new javax.swing.JTextField();
+        Button1 = new javax.swing.JButton();
+        Button2 = new javax.swing.JButton();
+        Button3 = new javax.swing.JButton();
+        Button7 = new javax.swing.JButton();
+        Button8 = new javax.swing.JButton();
+        Button5 = new javax.swing.JButton();
+        Button4 = new javax.swing.JButton();
+        Button6 = new javax.swing.JButton();
+        Button9 = new javax.swing.JButton();
+        Button0 = new javax.swing.JButton();
+        ButtonDot = new javax.swing.JButton();
+        ButtonEquals = new javax.swing.JButton();
+        ButtonDiv = new javax.swing.JButton();
+        ButtonMulti = new javax.swing.JButton();
+        ButtonMinus = new javax.swing.JButton();
+        ButtonPlus = new javax.swing.JButton();
+        ButtonClear = new javax.swing.JButton();
+        ButtonPercent = new javax.swing.JButton();
+        modifier = new javax.swing.JLabel();
+        ButtonRoot = new javax.swing.JButton();
+        lastValue = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+
+        jLabel1.setText("Currency Converter");
 
         backButton.setText("Back to menu");
+
+        results.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        results.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resultsActionPerformed(evt);
+            }
+        });
+
+        Button1.setText("1");
+        Button1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Button1ActionPerformed(evt);
+            }
+        });
+
+        Button2.setText("2");
+        Button2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Button2ActionPerformed(evt);
+            }
+        });
+
+        Button3.setText("3");
+        Button3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Button3ActionPerformed(evt);
+            }
+        });
+
+        Button7.setText("7");
+        Button7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Button7ActionPerformed(evt);
+            }
+        });
+
+        Button8.setText("8");
+        Button8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Button8ActionPerformed(evt);
+            }
+        });
+
+        Button5.setText("5");
+        Button5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Button5ActionPerformed(evt);
+            }
+        });
+
+        Button4.setText("4");
+        Button4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Button4ActionPerformed(evt);
+            }
+        });
+
+        Button6.setText("6");
+        Button6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Button6ActionPerformed(evt);
+            }
+        });
+
+        Button9.setText("9");
+        Button9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Button9ActionPerformed(evt);
+            }
+        });
+
+        Button0.setText("0");
+        Button0.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Button0ActionPerformed(evt);
+            }
+        });
+
+        ButtonDot.setText(".");
+        ButtonDot.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonDotActionPerformed(evt);
+            }
+        });
+
+        ButtonEquals.setText("=");
+        ButtonEquals.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonEqualsActionPerformed(evt);
+            }
+        });
+
+        ButtonDiv.setText("÷");
+        ButtonDiv.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonDivActionPerformed(evt);
+            }
+        });
+
+        ButtonMulti.setText("x");
+        ButtonMulti.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonMultiActionPerformed(evt);
+            }
+        });
+
+        ButtonMinus.setText("-");
+        ButtonMinus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonMinusActionPerformed(evt);
+            }
+        });
+
+        ButtonPlus.setText("+");
+        ButtonPlus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonPlusActionPerformed(evt);
+            }
+        });
+
+        ButtonClear.setText("AC");
+        ButtonClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonClearActionPerformed(evt);
+            }
+        });
+
+        ButtonPercent.setText("%");
+        ButtonPercent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonPercentActionPerformed(evt);
+            }
+        });
+
+        ButtonRoot.setText("√");
+        ButtonRoot.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonRootActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(Button5)
+                            .addGap(26, 26, 26)
+                            .addComponent(Button6))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(Button0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(Button7)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(Button8))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                    .addComponent(Button1)
+                                    .addGap(26, 26, 26)
+                                    .addComponent(Button2)))
+                            .addGap(26, 26, 26)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(Button3, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(Button9, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(ButtonDot, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(Button4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(ButtonMulti, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ButtonDiv)
+                    .addComponent(ButtonMinus, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ButtonPlus))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(ButtonClear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ButtonPercent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ButtonRoot, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ButtonEquals, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(32, 32, 32))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(results, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
+                .addComponent(modifier, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45)
+                .addComponent(lastValue, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(98, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(results, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
+                    .addComponent(modifier, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lastValue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Button7)
+                    .addComponent(Button8)
+                    .addComponent(Button9)
+                    .addComponent(ButtonDiv)
+                    .addComponent(ButtonClear))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Button5)
+                    .addComponent(Button4)
+                    .addComponent(Button6)
+                    .addComponent(ButtonMulti)
+                    .addComponent(ButtonPercent))
+                .addGap(28, 28, 28)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(Button2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Button3)
+                        .addComponent(ButtonMinus)
+                        .addComponent(ButtonRoot))
+                    .addComponent(Button1))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Button0)
+                    .addComponent(ButtonDot)
+                    .addComponent(ButtonEquals)
+                    .addComponent(ButtonPlus))
+                .addGap(161, 161, 161))
+        );
+
+        jLabel2.setText("Calculator");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -37,20 +299,167 @@ public class Calculator extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(backButton)
-                .addContainerGap(259, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(backButton)
+                        .addGap(54, 54, 54)
+                        .addComponent(jLabel2)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(backButton)
-                .addContainerGap(263, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(backButton)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void Button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button1ActionPerformed
+        results.setText(results.getText() + '1');
+    }//GEN-LAST:event_Button1ActionPerformed
+
+    private void Button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button2ActionPerformed
+        results.setText(results.getText() + '2');
+    }//GEN-LAST:event_Button2ActionPerformed
+
+    private void Button3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button3ActionPerformed
+        results.setText(results.getText() + '3');
+    }//GEN-LAST:event_Button3ActionPerformed
+
+    private void Button7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button7ActionPerformed
+        results.setText(results.getText() + '7');
+    }//GEN-LAST:event_Button7ActionPerformed
+
+    private void Button8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button8ActionPerformed
+        results.setText(results.getText() + '8');
+    }//GEN-LAST:event_Button8ActionPerformed
+
+    private void Button5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button5ActionPerformed
+        results.setText(results.getText() + '5');
+    }//GEN-LAST:event_Button5ActionPerformed
+
+    private void Button4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button4ActionPerformed
+        results.setText(results.getText() + '4');
+    }//GEN-LAST:event_Button4ActionPerformed
+
+    private void Button6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button6ActionPerformed
+        results.setText(results.getText() + '6');
+    }//GEN-LAST:event_Button6ActionPerformed
+
+    private void Button9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button9ActionPerformed
+        results.setText(results.getText() + '9');
+    }//GEN-LAST:event_Button9ActionPerformed
+
+    private void Button0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button0ActionPerformed
+        results.setText(results.getText() + '0');
+    }//GEN-LAST:event_Button0ActionPerformed
+
+    private void ButtonDotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonDotActionPerformed
+        if (results.getText().contains(".")) {
+            //error
+            return;
+        }
+        results.setText(results.getText() + ".");
+    }//GEN-LAST:event_ButtonDotActionPerformed
+
+    private void ButtonEqualsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonEqualsActionPerformed
+        ScriptEngineManager sm = new ScriptEngineManager();
+        ScriptEngine engine = sm.getEngineByName("JavaScript");
+        
+        try {
+            results.setText(String.valueOf(engine.eval(String.valueOf(previousValue) + modifierChar + results.getText())));
+        } catch (ScriptException e) {
+            e.printStackTrace();
+        }
+        
+        modifier.setText("");
+        lastValue.setText("");
+    }//GEN-LAST:event_ButtonEqualsActionPerformed
+
+    private void ButtonDivActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonDivActionPerformed
+        modifierChar = '/';
+        modifier.setText("" + modifierChar);
+        previousValue = Double.parseDouble(results.getText());
+        lastValue.setText(results.getText());
+        results.setText("");
+    }//GEN-LAST:event_ButtonDivActionPerformed
+
+    private void ButtonMultiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonMultiActionPerformed
+        modifierChar = '*';
+        modifier.setText("" + modifierChar);
+        previousValue = Double.parseDouble(results.getText());
+        lastValue.setText(results.getText());
+        results.setText("");
+    }//GEN-LAST:event_ButtonMultiActionPerformed
+
+    private void ButtonMinusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonMinusActionPerformed
+        modifierChar = '-';
+        modifier.setText("" + modifierChar);
+        previousValue = Double.parseDouble(results.getText());
+        lastValue.setText(results.getText());
+        results.setText("");
+    }//GEN-LAST:event_ButtonMinusActionPerformed
+
+    private void ButtonPlusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonPlusActionPerformed
+        modifierChar = '+';
+        modifier.setText("" + modifierChar);
+        previousValue = Double.parseDouble(results.getText());
+        lastValue.setText(results.getText());
+        results.setText("");
+    }//GEN-LAST:event_ButtonPlusActionPerformed
+
+    private void ButtonClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonClearActionPerformed
+        modifierChar = ' ';
+        previousValue = 0;
+        results.setText(null);
+    }//GEN-LAST:event_ButtonClearActionPerformed
+
+    private void ButtonPercentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonPercentActionPerformed
+        results.setText(String.valueOf(previousValue * Double.parseDouble(results.getText())));
+    }//GEN-LAST:event_ButtonPercentActionPerformed
+
+    private void ButtonRootActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonRootActionPerformed
+        results.setText(String.valueOf(Math.sqrt(Double.parseDouble(results.getText()))));
+    }//GEN-LAST:event_ButtonRootActionPerformed
+
+    private void resultsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resultsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_resultsActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Button0;
+    private javax.swing.JButton Button1;
+    private javax.swing.JButton Button2;
+    private javax.swing.JButton Button3;
+    private javax.swing.JButton Button4;
+    private javax.swing.JButton Button5;
+    private javax.swing.JButton Button6;
+    private javax.swing.JButton Button7;
+    private javax.swing.JButton Button8;
+    private javax.swing.JButton Button9;
+    private javax.swing.JButton ButtonClear;
+    private javax.swing.JButton ButtonDiv;
+    private javax.swing.JButton ButtonDot;
+    private javax.swing.JButton ButtonEquals;
+    private javax.swing.JButton ButtonMinus;
+    private javax.swing.JButton ButtonMulti;
+    private javax.swing.JButton ButtonPercent;
+    private javax.swing.JButton ButtonPlus;
+    private javax.swing.JButton ButtonRoot;
     public javax.swing.JButton backButton;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lastValue;
+    private javax.swing.JLabel modifier;
+    private javax.swing.JTextField results;
     // End of variables declaration//GEN-END:variables
 }
