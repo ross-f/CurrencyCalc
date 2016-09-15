@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package currencycalc;
 
 import java.awt.CardLayout;
@@ -12,7 +7,9 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 
 /**
- *
+ * This is the main class where the program starts, also implements 
+ * an ActionListener to allow the the events of handling buttons to
+ * be managed.
  * @author ross
  */
 public class CurrencyCalc implements ActionListener{
@@ -29,7 +26,7 @@ public class CurrencyCalc implements ActionListener{
     
     // constructor fot this class
     CurrencyCalc() {
-        // Create the windoeow that wil hold the program
+        // Create the window that wil hold the program
         container = new JFrame("Currency converter");
         
         // kill the java vm if the app is closed
@@ -50,6 +47,7 @@ public class CurrencyCalc implements ActionListener{
         converter = new CurrencyConverter();
         calculator = new Calculator();
         
+        // add each page to the content and give them names so they can be accessed by the card layout
         content.add(menu, "menu");
         content.add(converter, "converter");
         content.add(calculator, "calculator");
@@ -63,9 +61,10 @@ public class CurrencyCalc implements ActionListener{
     
     // This is where the program starts
     public static void main(String[] args) {
+        // build the gui
         CurrencyCalc app = new CurrencyCalc();
         
-        // add action listeners
+        // add action listeners for each button
         app.menu.calcButton.addActionListener(app);
         app.menu.converterButton.addActionListener(app);
         app.converter.backButton.addActionListener(app);
@@ -85,22 +84,27 @@ public class CurrencyCalc implements ActionListener{
      */
     @Override
     public void actionPerformed(ActionEvent ae) {
+        // get the text inside the button
         switch (ae.getActionCommand()) {
             case("Currency converter"): {
+                // show the currency converter
                 layout.show(content, "converter");
                 break;
             }
             
             case("Calculator"): {
+                // show the calculator
                 layout.show(content, "calculator");
                 break;
             }
             
             case("Back to menu"): {
+                // show the menu
                 layout.show(content, "menu");
                 break;
             }
             
+            // Throw an execption if the event isn't found - helps with debuging
             default: throw new UnsupportedOperationException("No action for " + ae.getActionCommand());
         }
         
