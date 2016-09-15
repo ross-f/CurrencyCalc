@@ -5,6 +5,10 @@
  */
 package currencycalc;
 
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ross
@@ -29,6 +33,7 @@ public class Menu extends javax.swing.JPanel {
 
         converterButton = new javax.swing.JButton();
         calcButton = new javax.swing.JButton();
+        helpButton = new javax.swing.JButton();
 
         converterButton.setText("Currency converter");
         converterButton.addActionListener(new java.awt.event.ActionListener() {
@@ -39,15 +44,27 @@ public class Menu extends javax.swing.JPanel {
 
         calcButton.setText("Calculator");
 
+        helpButton.setText("Help");
+        helpButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                helpButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(converterButton)
-                .addGap(45, 45, 45)
-                .addComponent(calcButton)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(converterButton)
+                        .addGap(45, 45, 45)
+                        .addComponent(calcButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(159, 159, 159)
+                        .addComponent(helpButton)))
                 .addContainerGap(42, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -57,7 +74,9 @@ public class Menu extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(converterButton)
                     .addComponent(calcButton))
-                .addContainerGap(165, Short.MAX_VALUE))
+                .addGap(43, 43, 43)
+                .addComponent(helpButton)
+                .addContainerGap(97, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -65,9 +84,29 @@ public class Menu extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_converterButtonActionPerformed
 
+    private void helpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helpButtonActionPerformed
+        final JDialog dialog =  new JDialog();
+        
+        dialog.setAlwaysOnTop(true);
+        JOptionPane.showMessageDialog(dialog, "This is a currency converter and calculator app. \n"
+                + "Click one of the options on the menu to be \n"
+                + "taken to the relvant page. \n\n"
+                + ""
+                + "The currency converter page allows you to choose \n"
+                + "two currencies from a drop down and then enter \n"
+                + "an ammount to convert. Clicking the convert button \n"
+                + "get the current rates from Yahoo finance and do the math! \n\n"
+                + ""
+                + "The calculator page will give you a basic calculator \n"
+                + "where you can enter numbers then add, subtract, multiply or divide \n "
+                + "them by more numbers that you enter. It can also do more complex \n"
+                + "procedures like workout squareroots or percentages.");
+    }//GEN-LAST:event_helpButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton calcButton;
     public javax.swing.JButton converterButton;
+    private javax.swing.JButton helpButton;
     // End of variables declaration//GEN-END:variables
 }
